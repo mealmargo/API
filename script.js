@@ -13,7 +13,9 @@ if (response.ok) {
     mainEl.appendChild(wrapper); //присваеваем main значения враппера
     inputEl.value = '';
   } else {
-    alert("Пользователь не найден")
+    const erriorMessage = document.createElement('h1');
+    erriorMessage.textContent= "Пользователь не найден";
+    mainEl.appendChild(erriorMessage)
   }
 })
 
