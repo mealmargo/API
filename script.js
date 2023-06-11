@@ -13,9 +13,7 @@ if (response.ok) {
     mainEl.appendChild(wrapper); //присваеваем main значения враппера
     inputEl.value = '';
   } else {
-    const erriorMessage = document.createElement('h1');
-    erriorMessage.textContent= "Пользователь не найден";
-    mainEl.appendChild(erriorMessage)
+    alert("ПОЛЬЗОВАТЕЛЬ НЕ НАЙДЕН")
   }
 })
 
