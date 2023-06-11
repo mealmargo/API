@@ -21,3 +21,20 @@
     align-items: center;
     height: 100vh;
   }
+.search-input{
+    padding: 10px;
+    margin: 10px;
+
+
+  } 
+  .search-button{
+    padding: 10px;
+    background-color: darkcyan;
+    color: black;
+    border: none;
+    
+
+  } 
+  .search-button:hover{
+    background-color: rgb(42, 71, 51);
+  }
