@@ -16,3 +16,16 @@ if (response.ok) {
     alert("Пользователь не найден")
   }
 })
+
+const inputEl = document.createElement('input');
+inputEl.classList.add('search-input'); //дали класс инпуту
+inputEl.setAttribute('name', 'name') // new formdata (7cтрочка) заберет значения инпута 
+
+const searchButtonEl = document.createElement('button')
+searchButtonEl.classList.add('search-button');
+searchButtonEl.setAttribute('type', 'submit');
+searchButtonEl.innerHTML = "Поиск";
+
+formEl.appendChild(inputEl);
+formEl.appendChild(searchButtonEl);
+mainEl.appendChild(formEl);
