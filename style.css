@@ -61,7 +61,9 @@
   .delete-button:hover{
     background-color:  rgb(42, 71, 51);
   }
- .search-image{
-    height: 200px;
-    width: 200px;
+  .search-image{
+    height: 100px;
+    width: 100px;
+    margin: 5px;
   }
+  
