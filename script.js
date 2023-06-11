@@ -42,3 +42,14 @@ function createProfileEl(profileData) {
   element.appendChild(createDeleteBtnEl())
   return element;
 }
+
+function createDeleteBtnEl() {
+  const element = document.createElement('button');
+  element.classList.add('delete-button');
+  element.innerText = "Удалить";
+  element.addEventListener('click', (e) => {
+    wrapper.innerHTML = ''
+  })
+
+  return element
+}
