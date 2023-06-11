@@ -35,13 +35,15 @@ mainEl.appendChild(formEl);
 function createProfileEl(profileData) {
   const element = document.createElement('div');
   element.classList.add('profile');
+
   element.innerHTML = `
-    <img class="search-image" src=${profileData.avatar_url}></img>
-    <p class="search-text"><span>Имя: </span>${profileData.name}</p>
-    <p class="search-text"><span>Город: </span>${profileData.location}</p>
-    <p class="search-text"><span>О себе: </span>${profileData.bio}</p>
-  `
-  element.appendChild(createDeleteBtnEl())
+    ${profileData.avatar_url ? `<img class="search-image" src=${profileData.avatar_url}></img>` : ''}
+    ${profileData.name ? `<p class="search-text"><span>Имя: </span>${profileData.name}</p>` : 'Об этом пользователе нет информации'}
+    ${profileData.location ? `<p class="search-text"><span>Город: </span>${profileData.location}</p>` : ''}
+    ${profileData.bio ? `<p class="search-text"><span>О себе: </span>${profileData.bio}</p>` : ''}
+  `;
+  
+  element.appendChild(createDeleteBtnEl());
   return element;
 }
 
