@@ -1,27 +1,46 @@
 const mainEl = document.querySelector('.main');
-const wrapper = document.createElement('div') // создали див
+const wrapper = document.createElement('div');
+wrapper.classList.add('users-wrapper'); // Добавляем класс 'users-wrapper' к элементу wrapper
+
+// Функция для получения всех пользователей при загрузке страницы
+async function fetchInitialUsers() {
+  const response = await fetch('https://api.github.com/users?per_page=30'); // Запрос для получения первых 30 пользователей
+  if (response.ok) {
+    const data = await response.json(); // Получение данных в формате JSON
+    data.forEach(user => {
+      wrapper.appendChild(createProfileEl(user)); // Создание элементов профиля для каждого пользователя
+    });
+    mainEl.appendChild(wrapper); // Добавление всех профилей в основной элемент
+  } else {
+    console.error('Ошибка при получении пользователей');
+  }
+}
+
+fetchInitialUsers();
 
 const formEl = document.createElement('form');
+
+// Обработчик события отправки формы
 formEl.addEventListener('submit', async (e) => {
-  e.preventDefault(); //чтобы при клике на поиск страница не обновилась
-  const inputsValue = Object.fromEntries(new FormData(e.target)); // получить значения инпутов , object.fromEntries вернет массив в виде объекта , e target вся наша форма
-  const response = await fetch(` https://api.github.com/users/${inputsValue.name} `); //создаем запрос на адрес
-  
-if (response.ok) {
-    const data = await response.json(); //здесь будет лежать информация , которая придет от API
-    wrapper.appendChild(createProfileEl(data)) 
-    mainEl.appendChild(wrapper); //присваеваем main значения враппера
+  e.preventDefault();
+  const inputsValue = Object.fromEntries(new FormData(e.target));
+  const response = await fetch(`https://api.github.com/users/${inputsValue.name}`);
+
+  if (response.ok) {
+    const data = await response.json();
+    wrapper.innerHTML = ''; // Очищаем содержимое wrapper перед добавлением нового профиля
+    wrapper.appendChild(createProfileEl(data));
     inputEl.value = '';
   } else {
-    alert("ПОЛЬЗОВАТЕЛЬ НЕ НАЙДЕН")
+    alert("Пользователь не найден");
   }
-})
+});
 
 const inputEl = document.createElement('input');
-inputEl.classList.add('search-input'); //дали класс инпуту
-inputEl.setAttribute('name', 'name') // new formdata (7cтрочка) заберет значения инпута 
+inputEl.classList.add('search-input');
+inputEl.setAttribute('name', 'name');
 
-const searchButtonEl = document.createElement('button')
+const searchButtonEl = document.createElement('button');
 searchButtonEl.classList.add('search-button');
 searchButtonEl.setAttribute('type', 'submit');
 searchButtonEl.innerHTML = "Поиск";
@@ -30,6 +49,7 @@ formEl.appendChild(inputEl);
 formEl.appendChild(searchButtonEl);
 mainEl.appendChild(formEl);
 
+// Остальной код остается без изменений
 function createProfileEl(profileData) {
   const element = document.createElement('div');
   element.classList.add('profile');
