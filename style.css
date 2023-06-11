@@ -38,3 +38,26 @@
   .search-button:hover{
     background-color: rgb(42, 71, 51);
   }
+
+ .profile{
+    border: 1px solid aliceblue;
+    border-radius: 25px;
+    padding: 25px;
+    background-color: white;
+    width: 330px;
+    box-shadow: 8px 8px 2px 1px darkcyan ;
+
+
+  } 
+  .delete-button {
+    padding: 10px;
+    background-color:darkcyan;
+    border: none;
+    color: #f1f5f8;
+    border-radius: 2px;
+    margin: 10px 2px;
+    width: 100px;
+  }
+  .delete-button:hover{
+    background-color:  rgb(42, 71, 51);
+  }
